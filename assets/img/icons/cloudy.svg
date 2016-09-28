@@ -1,0 +1,13 @@
+
+<svg width="25px" height="19px" viewBox="8 253 25 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M31,264.255294 C31,261.192391 28.5411392,258.795337 25.5506329,258.795337 C24.8860759,258.795337 24.2879747,258.928506 23.6898734,259.128261 C23.4905063,256.864376 21.6297468,255 19.3037975,255 C16.8449367,255 14.8512658,256.997546 14.8512658,259.461185 C14.8512658,259.993864 14.9841772,260.526543 15.1170886,260.992637 C14.9177215,260.926052 14.6518987,260.926052 14.4525316,260.926052 C11.9936709,260.926052 10,262.923597 10,265.387237 C10,267.784291 11.9272152,269.781837 14.3196203,269.848422 L25.75,269.848422 C28.6740506,269.515498 31,267.185028 31,264.255294 L31,264.255294 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1.2" y="-1.2" width="23.4" height="17.2484218">
+            <rect x="8.8" y="253.8" width="23.4" height="17.2484218" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <use id="Shape" stroke="#AFBED1" mask="url(#mask-2)" stroke-width="2.4" fill="none" xlink:href="#path-1"></use>
+</svg>

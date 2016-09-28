@@ -1,0 +1,21 @@
+
+<svg width="27px" height="27px" viewBox="6 18 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Sun" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(7.000000, 19.000000)">
+        <g id="Group-4" stroke="#AFBED1" stroke-width="1.2">
+            <path d="M12,21.8571446 L12,24.9795938" id="Stroke-1" stroke-linecap="round"></path>
+            <path d="M5.86604128,19.1135525 L3.65846968,21.3211241" id="Stroke-3" stroke-linecap="round"></path>
+            <path d="M3.12244923,12 L0,12" id="Stroke-4" stroke-linecap="round"></path>
+            <path d="M5.86604128,5.86604128 L3.65846968,3.65846968" id="Stroke-6" stroke-linecap="round"></path>
+            <path d="M12,3.12244923 L12,0" id="Stroke-7" stroke-linecap="round"></path>
+            <path d="M19.1135525,5.86604128 L21.3211241,3.65846968" id="Stroke-9" stroke-linecap="round"></path>
+            <path d="M21.8571446,12 L24.9795938,12" id="Stroke-10" stroke-linecap="round"></path>
+            <path d="M19.1135525,19.1135525 L21.3211241,21.3211241" id="Stroke-12" stroke-linecap="round"></path>
+            <g id="Group-17" transform="translate(6.244898, 6.244898)">
+                <path d="M6.24489846,0 C9.69333138,0 12.4897969,2.79646553 12.4897969,6.24489846 C12.4897969,9.69333138 9.69333138,12.4897969 6.24489846,12.4897969 C2.79646553,12.4897969 0,9.69333138 0,6.24489846 C0,2.79646553 2.79646553,0 6.24489846,0 L6.24489846,0 Z" id="Stroke-15"></path>
+            </g>
+        </g>
+    </g>
+</svg>

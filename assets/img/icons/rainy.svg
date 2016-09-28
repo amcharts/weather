@@ -1,0 +1,31 @@
+
+<svg width="27px" height="18px" viewBox="6 138 27 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M13.6006683,5.54472846 C13.6006683,3.70978235 12.008185,2.27373757 10.071381,2.27373757 C9.64098009,2.27373757 9.25361928,2.35351784 8.86625847,2.47318823 C8.7371382,1.11692372 7.53201569,0 6.02561255,0 C4.43312924,0 3.14192655,1.19670398 3.14192655,2.6726389 C3.14192655,2.99175996 3.22800673,3.31088102 3.31408691,3.59011195 C3.18496664,3.55022182 3.01280628,3.55022182 2.88368601,3.55022182 C1.29120269,3.55022182 0,4.74692581 0,6.22286072 C0,7.6589055 1.2481626,8.85560949 2.79760583,8.89549962 L10.2005013,8.89549962 C12.0942652,8.69604895 13.6006683,7.29989431 13.6006683,5.54472846 L13.6006683,5.54472846 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1.2" y="-1.2" width="16.0006683" height="11.2954996">
+            <rect x="-1.2" y="-1.2" width="16.0006683" height="11.2954996" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+        <path d="M19.6750938,8.22001248 C19.6750938,5.59417516 17.3786318,3.53917204 14.5856374,3.53917204 C13.964972,3.53917204 13.4063731,3.65333888 12.8477742,3.82458914 C12.6615746,1.88375286 10.9237114,0.2854171 8.75138242,0.2854171 C6.45492037,0.2854171 4.59292411,1.9979197 4.59292411,4.11000624 C4.59292411,4.5666736 4.71705719,5.02334096 4.84119028,5.4229249 C4.65499065,5.36584148 4.40672448,5.36584148 4.22052486,5.36584148 C1.9240628,5.36584148 0.062066542,7.07834408 0.062066542,9.19043062 C0.062066542,11.2454337 1.86199626,12.9579363 4.09639177,13.0150198 L14.771837,13.0150198 C17.5027648,12.7296027 19.6750938,10.731683 19.6750938,8.22001248 L19.6750938,8.22001248 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1.2" y="-1.2" width="22.0130273" height="15.1296027">
+            <rect x="-1.13793346" y="-0.9145829" width="22.0130273" height="15.1296027" fill="white"></rect>
+            <use xlink:href="#path-3" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(8.000000, 140.000000)">
+        <g transform="translate(0.106961, 0.142709)" id="Shape">
+            <g>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <use stroke="#AFBED1" mask="url(#mask-2)" stroke-width="2.4" xlink:href="#path-1"></use>
+            </g>
+        </g>
+        <g transform="translate(3.534113, 0.523265)" id="Shape">
+            <g>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use stroke="#AFBED1" mask="url(#mask-4)" stroke-width="2.4" xlink:href="#path-3"></use>
+            </g>
+        </g>
+    </g>
+</svg>

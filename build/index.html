@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+		<link rel="shortcut icon" href="./assets/img/icons/favicon.ico"/>
+		<link rel="manifest" href="./assets/json/manifest.json">
+
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="apple-touch-startup-image" href="./assets/img/icons/icon320x480.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/icons/icon76x76.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="./assets/img/icons/icon120x120.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="./assets/img/icons/icon152x152.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<title>Weather forecast | amCharts</title>
+
+		<meta property="og:title" content="AmCharts Weather App"/>
+		<meta property="og:site_name" content="amCharts"/>
+		<meta property="og:url" content="https://weather.amcharts.com"/>
+		<meta property="og:description" content="Amazing weather forecast web app built with amCharts javascript maps. Fork your instance to play around."/>
+		<meta property="og:image" content="https://weather.amcharts.com/amcharts-weather-forecast.jpg"/>
+		
+		<link rel="stylesheet" type="text/css" href="./assets/css/app.min.css">
+
+		<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,500' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:100,300' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div class="app country-mode">
+			<article class="loader visible">
+				<img src="./assets/img/loader.svg" />
+			</article>
+			<article class="container">
+				<a class="brand" href="https://www.amcharts.com/" title="JavaScript Charts and Maps | amCharts">
+					<img src="./assets/img/brand.svg" />
+				</a>
+				<a class="social-icon facebook" href="https://www.facebook.com/amcharts/" target="_blank">
+					<span class="social-facebook"></span>
+				</a>
+				<a class="social-icon twitter" href="https://www.twitter.com/amcharts/" target="_blank">
+					<span class="social-twitter"></span>
+				</a>
+				<div class="map"></div>
+				<div class="ui">
+					<div class="search">
+						<div class="input">
+							<button class="reset-mode"></button>
+							<input type="text" value="" placeholder="Search City, Country..." />
+						</div>
+						<div class="meta" style="display: none;">
+							<span>Pick a city in</span> <span class="city">n/a</span>
+						</div>
+						<div class="results"></div>
+					</div>
+					<div class="weather">
+						<div class="current">
+							<div class="badge">
+								<div class="row">
+									<div class="city">
+										<span class="name">n/a</span>
+										<span class="time">n/a</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="temp">
+										<span class="icon day"></span>
+										<span class="value">n/a</span>
+										<span class="wind"><img src="./assets/img/weather/weather_sagittarius.svg" /></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="meta">
+										<span class="sunrise">Sunrise <span class="time">n/a</span></span>
+										<span class="icon">
+											<img src="./assets/img/icons/sunrise.svg" />
+										</span>
+										<span class="sunset">Sunrise <span class="time">n/a</span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tabs">
+							<ul>
+								<li>
+									<a href="#temperature" data-type="temperature" data-max="100">Temperature</a>
+								</li>
+								<li>
+									<a href="#humidity" data-type="humidity" data-max="200">Humidity</a>
+								</li>
+								<li>
+									<a href="#wind" data-type="wind" data-max="20">Wind</a>
+								</li>
+							</ul>
+							<div>
+								<div class="chart"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<script type="text/javascript" src="//amcharts.com/lib/3/amcharts.js"></script>
+		<script type="text/javascript" src="//amcharts.com/lib/3/serial.js"></script>
+		<script type="text/javascript" src="//amcharts.com/lib/3/plugins/animate/animate.js"></script>
+		<script type="text/javascript" src="//amcharts.com/lib/3/ammap_amcharts_extension.js"></script>
+
+		<script type="text/javascript" src="./assets/js/OPENWEATHER_APIKEY.js"></script>
+		<script type="text/javascript" src="./assets/js/app.min.js"></script>
+	</body>
+</html>

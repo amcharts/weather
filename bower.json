@@ -1,0 +1,14 @@
+{
+  "name": "amcharts-weather",
+  "version": "0.1",
+  "author": "Benjamin Maertz <maertz@benjaminmaertz.de>",
+  "bugs": {
+    "url" : "https://github.com/amcharts/weather/issues"
+  },
+  "dependencies": {
+    "normalize-css": "~4.1.1",
+    "jquery": "~3.0.0",
+    "jquery-ui": "~1.11.4"
+  },
+  "private": true
+}

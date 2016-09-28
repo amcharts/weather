@@ -1,0 +1,21 @@
+{
+  "name": "amcharts-weather",
+  "version": "0.1",
+  "author": "Benjamin Maertz <maertz@benjaminmaertz.de>",
+  "bugs": {
+    "url" : "https://github.com/amcharts/weather/issues"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bower-clean": "^0.2.2",
+    "grunt-bower-concat": "^1.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-css": "^0.5.4",
+    "grunt-replace": "^1.0.1",
+    "load-grunt-tasks": "^3.5.2"
+  }
+}
