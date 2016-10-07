@@ -1,6 +1,6 @@
 # amCharts Weather Map
 
-Version: 0.1 pre-release
+Version: 1.0.2
 
 
 ## Description
@@ -39,6 +39,16 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 
 ## Changelog
+
+### 1.0.2
+* Fixed: SVG icon display issue on Firefox
+* Changed: Versioning structure
+* Changed: Beautified all JS and CSS files
+* Added: Resource CSV to load the specific country map files
+* Added: Country map switch to load specific country maps
+* Added: Unit switcher to toggle between celsius and fahrenheit
+* Added: `loadMap` to dynamically replace the map files and search context
+* Removed: OpenWeather API Key
 
 ### 0.1 PR
 * Pre-release

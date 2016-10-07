@@ -4,9 +4,9 @@
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    width="64"
-    height="64"
-    viewbox="0 0 64 64">
+    width="256"
+    height="256"
+    viewBox="0 0 64 64" >
     <g id="thunder">
         <g transform="translate(20,10)">
             <g class="am-weather-cloud-1">

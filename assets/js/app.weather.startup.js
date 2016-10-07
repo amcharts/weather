@@ -2,7 +2,7 @@
 Name: amCharts Weather Map
 Description: Weather forecastr webapp
 Author: Benjamin Maertz, amCharts
-Version: 1.0.0
+Version: 1.0.2
 Author URI: http://www.amcharts.com/
 
 Copyright 2016 amCharts
@@ -23,5 +23,9 @@ Please note that the above license covers only this plugin. It by all means does
 not apply to any other amCharts products that are covered by different licenses.
 */
 jQuery( document ).ready( function() {
-	new AmWeather();
+	if ( OPENWEATHER_APIKEY ) {
+		window.app = new AmWeather();
+	} else {
+		jQuery(".message.no-api").show();
+	}
 } );

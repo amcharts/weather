@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 	<link rel="shortcut icon" href="./assets/img/icons/favicon.ico" />
-	<link rel="manifest" href="./assets/json/manifest.json">
+	<link rel="manifest" href="./manifest.json">
 
 	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-startup-image" href="./assets/img/icons/icon320x480.png">
@@ -24,7 +24,10 @@
 	<meta property="og:description" content="Amazing weather forecast web app built with amCharts javascript maps. Fork your instance to play around." />
 	<meta property="og:image" content="https://weather.amcharts.com/amcharts-weather-forecast.jpg" />
 
-	<link rel="stylesheet" type="text/css" href="./assets/css/app.min.css">
+	<link rel="stylesheet" type="text/css" href="./bower_components/normalize-css/normalize.css">
+
+	<link rel="stylesheet" type="text/css" href="./assets/css/app.css">
+	<link rel="stylesheet" type="text/css" href="./assets/css/app.social.css">
 
 	<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,500' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:100,300' rel='stylesheet' type='text/css'>
@@ -118,8 +121,13 @@
 	<script type="text/javascript" src="//amcharts.com/lib/3/plugins/animate/animate.js"></script>
 	<script type="text/javascript" src="//amcharts.com/lib/3/ammap_amcharts_extension.js"></script>
 
+	<script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="./bower_components/jquery-ui/jquery-ui.js"></script>
+
 	<script type="text/javascript" src="./assets/js/OPENWEATHER_APIKEY.js"></script>
-	<script type="text/javascript" src="./assets/js/app.min.js"></script>
+	<script type="text/javascript" src="./assets/js/app.weather.component.js"></script>
+	<script type="text/javascript" src="./assets/js/app.weather.startup.js"></script>
+	<script type="text/javascript" src="./assets/js/app.weather.collisionHandler.js"></script>
 </body>
 
 </html>
