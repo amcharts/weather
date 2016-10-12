@@ -84,3 +84,11 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 ### 0.1 PR
 * Pre-release
+
+### Credits
+
+This tool uses [OpenWeatherMap](http://openweathermap.org/) API.
+
+This tool relies on data extracted from [GeoNames](http://www.geonames.org/).
+
+It also uses amCharts JavaScript libraries: [JavaScript Maps](https://www.amcharts.com/javascript-maps/) and [JavaScript Charts](https://www.amcharts.com/javascript-charts/)
