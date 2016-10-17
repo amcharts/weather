@@ -1,7 +1,10 @@
 .DS_Store
+assets/js/OPENWEATHER_APIKEY.js
 assets/json/names/*
 node_modules/*
 bower_components/*
 !bower_components/jQuery/dist/*
 !bower_components/jquery-ui/jquery-ui.js
 !bower_components/normalize-css/normalize-css.css
+assets/js/OPENWEATHER_APIKEY.js
+build/assets/js/OPENWEATHER_APIKEY.js

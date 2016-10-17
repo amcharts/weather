@@ -15,8 +15,8 @@ html, body, .app {
     display: none;
 }
 
-.bold-that {
-    font-weight: 500;
+.bold {
+    font-weight: 400;
 }
 
 
@@ -29,10 +29,16 @@ html, body, .app {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    opacity: 0;
+    -webkit-transition: opacity ease-out 250ms;
+    -moz-transition: opacity ease-out 250ms;
+    -o-transition: opacity ease-out 250ms;
+    transition: opacity ease-out 250ms;
 }
 
 .app .view.visible {
     pointer-events: all;
+    opacity: 1;
 }
 
 
@@ -93,19 +99,120 @@ html, body, .app {
 
 
 /*
-** SEARCH
+** UI
 */
 
-.app .view.container .ui .search {
+.app .view.container .ui {
     position: fixed;
     top: 0;
     right: 0;
+    bottom: auto;
     width: 555px;
-    background-color: #FFFFFF;
-    margin: 0;
-    padding: 20px 40px;
+    z-index: 1337;
+}
+
+.app.show-drawer.show-weather .view.container .ui {
+    bottom: 0;
+}
+
+.app .view.container .ui .search, .app .view.container .ui .weather {
+    display: none;
+}
+
+.app.show-drawer .view.container .ui .search, .app.show-drawer .view.container .ui .weather {
+    display: block;
+}
+
+.app .view.container .ui>div {
+    position: relative;
     box-sizing: border-box;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+
+/*
+** UI; NAV
+*/
+
+.app .view.container .ui .nav {
+    position: relative;
+    background-color: #f2f6fa;
+    font-size: 14px;
+    margin: 0;
+    padding: 15px 40px;
+    list-style: none;
     z-index: 30;
+}
+
+.app .view.container .ui .nav>li {
+    display: none;
+}
+
+.app .view.container .ui .nav>li a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.app .view.container .ui .nav>li.toggle {
+    float: right;
+    display: inline-block;
+}
+
+.app .view.container .ui .nav>li.toggle a {
+    color: #80b7f1;
+}
+
+.app .view.container .ui .nav>li.slash:after {
+    content: "/";
+    padding: 0 5px;
+    color: #96A7BE;
+}
+
+.app .view.container .ui .nav>li.tree.world {
+    display: inline-block;
+}
+
+
+/* NAV; STATES; WORLD MODE */
+
+.app.world-mode .view.container .ui .nav>li.tree.country, .app.world-mode .view.container .ui .nav>li.slash, .app.world-mode .view.container .ui .nav>li.select.world, .app.world-mode .view.container .ui .nav>li.select.country {
+    display: none;
+}
+
+
+/* NAV; STATES; COUNTRY MODE */
+
+.app.country-mode .view.container .ui .nav>li.tree.country, .app.country-mode .view.container .ui .nav>li.slash, .app.country-mode .view.container .ui .nav>li.select.country {
+    display: inline-block;
+}
+
+
+/* NAV; STATES; COUNTRY MODE; MAP */
+
+.app.country-mode.country-map .view.container .ui .nav>li.select.country {
+    display: none;
+}
+
+.app.country-mode.country-map .view.container .ui .nav>li.select.world {
+    display: inline-block;
+}
+
+
+/* NAV; STATES; COUNTRY MODE; NO MAP */
+
+.app.country-mode.no-country-map .view.container .ui .nav>li.select.country {
+    display: none;
+}
+
+
+/*
+** UI; SEARCH
+*/
+
+.app .view.container .ui .search {
+    padding: 20px 40px;
+    z-index: 20;
 }
 
 .app .view.container .ui .search, .view.container .ui .weather {
@@ -259,45 +366,16 @@ html, body, .app {
     margin: 10px 0 0 0;
 }
 
-.app .view.container .ui .search>.meta .blacklabel {
-    color: #000000;
-}
-
-.app .view.container .ui .search>.meta .select-country-map {
-    display: inline;
-}
-
-.app .view.container .ui .search>.meta .reset-country-map {
-    display: none;
-}
-
-.app.country-map .view.container .ui .search>.meta .select-country-map {
-    display: none;
-}
-
-.app.country-map .view.container .ui .search>.meta .reset-country-map {
-    display: inline;
-}
-
-.app.no-country-map .view.container .ui .search>.meta .select-country-map, .app.no-country-map .view.container .ui .search>.meta .reset-country-map {
-    display: none;
-}
-
 
 /*
-** BADGE
+** UI; BADGE
 */
 
 .app .view.container .ui .weather {
-    position: fixed;
+    position: absolute;
     top: 0;
-    right: 0;
     bottom: 0;
-    width: 555px;
-    background: white;
-    margin: 0;
-    padding: 0;
-    z-index: 20;
+    z-index: 10;
     transform: translateX(100%);
     -webkit-transition: transform ease-out 250ms;
     -moz-transition: transform ease-out 250ms;
@@ -317,7 +395,7 @@ html, body, .app {
     right: 0;
     bottom: 50%;
     left: 0;
-    padding-top: 102px;
+    padding-top: 128px;
 }
 
 
@@ -663,37 +741,82 @@ html, body, .app {
 
 .app.show-search-results .view.container .ui .search .results {
     margin: 15px 0 0 0;
+    overflow: hidden;
+}
+
+.app.show-search-results .view.container .ui .search .results ul {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
 /*
-** APP SOCIAL ICONS
+** APP ICON BUTTONS
 */
 
-.app .social-icon {
-    position: fixed;
+.app .icon-button {
     display: block;
     z-index: 20;
     background-color: #FFF;
     border-radius: 50px;
-    bottom: 20px;
     width: 40px;
     height: 40px;
     line-height: 45px;
     text-align: center;
-    color: #000
+    color: #000;
+    border: none;
+    outline: none;
 }
 
-.app .social-icon:hover {
-    background-color: #DADADA
+.app .icon-button:hover {
+    background-color: #DADADA;
+    cursor: pointer;
 }
 
-.app .social-icon.facebook {
+
+/* APP ICON BUTTON; DRAWER */
+
+.app .icon-button.drawer {
+    position: absolute;
+    top: 0px;
+    left: -100px;
+    padding-top: 8px;
+}
+
+.app .icon-button.drawer .bar {
+    display: block;
+    height: 1px;
+    width: 70%;
+    margin: 0 auto 4px auto;
+    background-color: #000000;
+}
+
+
+/* APP ICON BUTTONS; SOCIAL */
+
+.app .icon-button.social {
+    position: fixed;
+    bottom: 20px;
+}
+
+.app .icon-button.social.facebook {
     left: 80px
 }
 
-.app .social-icon.twitter {
+.app .icon-button.social.twitter {
     left: 130px
+}
+
+
+/* APP ICON BUTTONS; INFO */
+
+.info-text {
+    position: fixed;
+    z-index: 20;
+    bottom: 25px;
+    left: 180px;
+    font-size: 11px;
+    max-width: 100px;
 }
 
 
@@ -705,66 +828,42 @@ html, body, .app {
     transform: translate(-32px, -32px) scale(0.5);
 }
 
+
 /*
 ** SMALL DEVICES
 */
+
 @media only screen and (max-width: 767px) {
-    .app .view.container .ui .search, .app .view.container .ui .weather {
+    /* UI */
+    .app .view.container .ui {
         width: 100%;
+        bottom: auto;
     }
+    /* NAV */
+    .app .view.container .ui .nav {
+        padding-left: 10px;
+        padding-right: 5px;
+    }
+    /* SEARCH */
     .app .view.container .ui .search {
         padding: 5px;
     }
-    .app.show-search-results .view.container .ui .search {
-        height: 100%;
-    }
-    .app .view.container .ui .search .results {
-        position: absolute;
-        top: 71px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 100%;
-        overflow: auto;
-        display: none;
-    }
-    .app.show-search-results .view.container .ui .search .results {
-        display: block;
-    }
 }
+
 @media only screen and (max-width: 767px) and (orientation:landscape) {
     .app .view.container .ui .weather .current, .app .view.container .ui .weather .tabs {
-        top: 71px;
-        right: 0;
-        left: 0;
-        bottom: 0;
+        width: 50%;
+        margin: 108px 0 0 0;
         padding: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
     .app .view.container .ui .weather .current {
         right: 50%;
     }
     .app .view.container .ui .weather .tabs {
         left: 50%;
-    }
-    .app .view.container .ui .weather .tabs .amcharts-graph-wind_deg {
-        -webkit-transform: translate(0, -25px);
-        -moz-transform: translate(0, -25px);
-        transform: translate(0, -25px);
-    }
-    .app .view.container .ui .weather .tabs .amcharts-graph-icon {
-        -webkit-transform: translate(0, 35px);
-        -moz-transform: translate(0, 35px);
-        transform: translate(0, 35px);
-    }
-    .app .view.container .ui .weather .tabs .amcharts-graph-icon image {
-        -webkit-transform: translate(-21px, -21px) scale(0.33);
-        -moz-transform: translate(-21px, -21px) scale(0.33);
-        transform: translate(-21px, -21px) scale(0.33);
-    }
-    .app .view.container .ui .weather .tabs .amcharts-graph-time text {
-        font-size: 8px;
-    }
-    .app .view.container .ui .weather .tabs .amcharts-graph-label text {
-        font-size: 10px;
     }
 }

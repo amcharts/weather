@@ -22,7 +22,7 @@
 	<link rel="icon" type="image/png" href="./assets/img/icons/favicon-32x32.png" sizes="32x32" />
 	<link rel="icon" type="image/png" href="./assets/img/icons/favicon-16x16.png" sizes="16x16" />
 	<link rel="icon" type="image/png" href="./assets/img/icons/favicon-128.png" sizes="128x128" />
-	<meta name="application-name" content="&nbsp;"/>
+	<meta name="application-name" content="&nbsp;" />
 	<meta name="msapplication-TileColor" content="#FFFFFF" />
 	<meta name="msapplication-TileImage" content="./assets/img/icons/mstile-144x144.png" />
 	<meta name="msapplication-square70x70logo" content="./assets/img/icons/mstile-70x70.png" />
@@ -35,7 +35,7 @@
 
 	<title>Weather forecast | amCharts</title>
 
-	<meta property="og:title" content="AmCharts Weather App" />
+	<meta property="og:title" content="amCharts Weather Map" />
 	<meta property="og:site_name" content="amCharts" />
 	<meta property="og:url" content="https://weather.amcharts.com" />
 	<meta property="og:description" content="Free weather map and chart visualization app, built with amCharts libraries. Use it online or fork it on GitHub and create your own version." />
@@ -62,14 +62,37 @@
 			<a class="brand" href="https://www.amcharts.com/" title="JavaScript Charts and Maps | amCharts">
 				<img src="./assets/img/brand.svg" />
 			</a>
-			<a class="social-icon facebook" href="https://www.facebook.com/amcharts/" target="_blank">
+			<a class="social icon-button facebook" href="https://www.facebook.com/amcharts/" target="_blank">
 				<span class="social-facebook"></span>
 			</a>
-			<a class="social-icon twitter" href="https://www.twitter.com/amcharts/" target="_blank">
+			<a class="social icon-button twitter" href="https://www.twitter.com/amcharts/" target="_blank">
 				<span class="social-twitter"></span>
 			</a>
+			<span class="info-text">
+				<a href="https://github.com/amcharts/weather" target="_blank">
+					Click here
+				</a> for more info about this tool
+			</span>
 			<div class="map"></div>
 			<div class="ui">
+				<ul class="nav">
+					<li class="tree world">
+						<a href="?map=world" class="world loadmap slash" data-map="world">World</a>
+					</li>
+					<li class="tree slash"></li>
+					<li class="tree country">
+						<a href="#" class="country loadmap bold">n/a</a>
+					</li>
+					<li class="select country">
+						&nbsp;&ndash;&nbsp;<span>View</span> <a class="country forced loadmap bold" href="#">n/a</a> map.
+					</li>
+					<li class="select world">
+						&nbsp;&ndash;&nbsp;<span>Back to</span> <a class="world forced loadmap bold" href="?map=world" data-map="world">World</a> map.
+					</li>
+					<li class="toggle">
+						<a href="#" class="toggle">Hide this</a>
+					</li>
+				</ul>
 				<div class="search">
 					<div class="input">
 						<i class="icon"></i>
@@ -78,11 +101,6 @@
 							<button data-units="metric" class="active">C°</button>
 							<button data-units="imperial">F°</button>
 						</div>
-					</div>
-					<div class="meta" style="display: none;">
-						<span>Pick a city in</span> <span class="country blacklabel pickacity">n/a</span>
-						<span class="select-country-map">&nbsp;&ndash;&nbsp;<span>View</span> <a class="country blacklabel loadmap" href="#">n/a</a> map.</span>
-						<span class="reset-country-map">&nbsp;&ndash;&nbsp;<span>Back to </span> <a class="country blacklabel loadmap" href="#">n/a</a> map.</span>
 					</div>
 					<div class="results"></div>
 				</div>

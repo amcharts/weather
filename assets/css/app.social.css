@@ -9,7 +9,7 @@
     font-weight: normal;
     font-style: normal;
 }
-[class*='social-']:before{
+.social:before{
 	display: inline-block;
    font-family: 'SocialIcons';
    font-style: normal;
@@ -18,5 +18,5 @@
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale
 }
-.social-facebook:before{content:'\0041';}
-.social-twitter:before{content:'\0042';}
+.social.facebook:before{content:'\0041';}
+.social.twitter:before{content:'\0042';}

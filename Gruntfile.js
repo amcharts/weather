@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             }
         },
         "copy": {
-            "all": {
+            "js": {
                 "files": [{
                     "expand": true,
                     "flatten": true,
@@ -33,7 +33,11 @@ module.exports = function(grunt) {
                     ],
                     "dest": "build/assets/tmp/js/",
                     "filter": "isFile"
-                }, {
+                }]
+            },
+
+            "css": {
+                files: [{
                     "expand": true,
                     "flatten": true,
                     "src": [
@@ -41,27 +45,31 @@ module.exports = function(grunt) {
                     ],
                     "dest": "build/assets/tmp/css/",
                     "filter": "isFile"
-                }, {
-                    "expand": true,
-                    "flatten": true,
-                    "src": [
-                        "assets/csv/*"
-                    ],
-                    "dest": "build/assets/tmp/csv/",
-                    "filter": "isFile"
-                }, {
+                }]
+            },
+
+            "img": {
+                files: [{
                     "expand": true,
                     "cwd": "assets/img/",
                     "src": "**",
                     "dest": "build/assets/img/",
                     "filter": "isFile"
-                }, {
+                }]
+            },
+
+            "fonts": {
+                files: [{
                     "expand": true,
                     "cwd": "assets/fonts/",
                     "src": "**",
                     "dest": "build/assets/fonts/",
                     "filter": "isFile"
-                }, {
+                }]
+            },
+
+            "json": {
+                files: [{
                     "expand": true,
                     "cwd": "assets/json/",
                     "src": [
@@ -74,6 +82,19 @@ module.exports = function(grunt) {
                     "filter": "isFile"
                 }]
             },
+
+            "csv": {
+                files: [{
+                    "expand": true,
+                    "flatten": true,
+                    "src": [
+                        "assets/csv/*"
+                    ],
+                    "dest": "build/assets/csv/",
+                    "filter": "isFile"
+                }]
+            },
+
             "apikey": {
                 "files": [{
                     "expand": true,

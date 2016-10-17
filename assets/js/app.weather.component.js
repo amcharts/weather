@@ -2,7 +2,7 @@
 Name: amCharts Weather Map
 Description: Weather forecast webapp
 Author: Benjamin Maertz, amCharts
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://www.amcharts.com/
 
 Copyright 2016 amCharts
@@ -26,7 +26,7 @@ var AmWeather = function() {
     var _this = this;
 
     // VERSION :)
-    _this.version = "1.0.2";
+    _this.version = "1.0.3";
     _this.bbox = {};
 
     // SELECTOR
@@ -35,17 +35,20 @@ var AmWeather = function() {
             wrapper: ".app",
             views: ".app .view",
             loader: ".app .view.loader",
+            container: ".app .view.container",
             map: ".map",
-            chart: ".chart"
+            chart: ".chart",
+            nav: ".nav",
+            navToggle: ".nav .toggle a",
+            navLoadMap: ".nav .loadmap",
+            navLoadMapWorld: ".nav .loadmap.world",
+            navLoadMapCountry: ".nav .loadmap.country"
         },
         search: {
             input: ".search .input input",
             inputIcon: ".search .input .icon",
             inputUnitSwitcher: ".search .input .unit-switcher button",
-            results: ".search .results",
-            meta: ".search .meta",
-            metaPickACity: ".search .meta .pickacity",
-            metaLoadMap: ".search .meta .loadmap"
+            results: ".search .results"
         }
     }
 
@@ -103,7 +106,52 @@ var AmWeather = function() {
         pathToImages: "./assets/img/weather/",
         pathToImagesAnimated: "./assets/img/weather-animated/",
         pathToResources: "./assets/csv/resources.csv",
-        easing: jQuery.easing.easeInOutCubic
+        easing: jQuery.easing.easeInOutCubic,
+        labels: {
+            showThis: "Show this",
+            hideThis: "Hide this"
+        },
+
+        defaultZoom: {
+            zoomLevel: 1.25,
+            zoomLatitude: 25.1337,
+            zoomLatitudeC: 25.1337,
+            zoomLongitude: 10.3268,
+            zoomLongitudeC: 10.3268
+        },
+
+        // TOP 15 BY POPULATION
+        defaultStations: [{
+            "id": 1814991
+        }, {
+            "id": 1269750
+        }, {
+            "id": 6252001
+        }, {
+            "id": 1643084
+        }, {
+            "id": 3469034
+        }, {
+            "id": 1168579
+        }, {
+            "id": 1210997
+        }, {
+            "id": 2328926
+        }, {
+            "id": 2017370
+        }, {
+            "id": 1861060
+        }, {
+            "id": 3996063
+        }, {
+            "id": 1694008
+        }, {
+            "id": 1562822
+        }, {
+            "id": 337996
+        }, {
+            "id": 2921044
+        }]
     }
 
     // CURRENT BUFFER
@@ -139,6 +187,16 @@ var AmWeather = function() {
     _this.__initialize();
 }
 
+/*
+ ** SHOW OFF
+ */
+AmWeather.prototype.__showOff = function() {
+    var _this = this;
+    jQuery(_this.selector.app.wrapper).addClass("show-drawer");
+    jQuery(_this.selector.app.loader).removeClass("visible");
+    jQuery(_this.selector.app.container).addClass("visible");
+    jQuery(_this.selector.search.input).focus();
+}
 
 /*
  ** INITIALIZE
@@ -164,6 +222,21 @@ AmWeather.prototype.__initialize = function() {
     // INITIALIZE ENVIROMENT
     _this.__getEnv();
 
+    // BIND TOGGLE BUTTON
+    jQuery(_this.selector.app.navToggle).on("click", function(e) {
+        e.preventDefault();
+
+        // TOGGLE
+        jQuery(_this.selector.app.wrapper).toggleClass("show-drawer");
+
+        // TEXT
+        if (jQuery(_this.selector.app.wrapper).hasClass("show-drawer")) {
+            jQuery(this).text(_this.config.labels.hideThis);
+        } else {
+            jQuery(this).text(_this.config.labels.showThis);
+        }
+    });
+
     // BIND BACK BUTTON
     jQuery(_this.selector.search.inputIcon).on("click", function(e) {
         e.preventDefault();
@@ -175,17 +248,17 @@ AmWeather.prototype.__initialize = function() {
     });
 
     // BIND LOAD MAP LINK
-    jQuery(_this.selector.search.metaLoadMap).on("click", function(e) {
+    jQuery(_this.selector.app.navLoadMap).on("click", function(e) {
         e.preventDefault();
-        var country_name = "world";
         var button_data = jQuery(this).data();
+        var isForced = jQuery(this).hasClass("forced");
+        var isCountry = jQuery(this).hasClass("country");
 
-        // GET COUNTRY NAME
-        if (_this.env.map == "worldLow") {
-            country_name = button_data.map;
+        if (button_data && button_data.map) {
+            if (!isCountry || isForced) {
+                _this.loadMap(button_data.map);
+            }
         }
-
-        _this.loadMap(country_name);
     });
 
     // BIND UNIT TOGGLE BUTTONS
@@ -197,6 +270,9 @@ AmWeather.prototype.__initialize = function() {
         // UPDATE UNITS
         _this.current.units = data.units;
         _this.updateUnits();
+
+        // UPDATE SEARCH BY TRIGGERING BLUR
+        _this.search.input.trigger("blur");
 
         // TOGGLE BUTTONS
         jQuery(this).parent().find("button").removeClass("active");
@@ -229,7 +305,7 @@ AmWeather.prototype.loadMap = function(country_name) {
     // LOAD MAP FILE
     function handleMapFile() {
         var country_map = AmCharts.maps[mapFileName];
-        var country_paths, country_code;
+        var country_paths, country_code, country_projection;
 
         // NOT HERE
         if (!country_map) {
@@ -253,11 +329,19 @@ AmWeather.prototype.loadMap = function(country_name) {
             jQuery(_this.selector.app.wrapper).removeClass("country-map");
         }
 
+        // MAP PROJECTION
+        if (_this.env.map == "usaMercatorLow") {
+            country_projection = "eckert3";
+        } else {
+            country_projection = "mercator";
+        }
+
         // UPDATE MAP
         _this.current.map_instance.dataProvider = {
             map: _this.env.map,
             getAreasFromMap: true,
-            images: []
+            images: [],
+            projection: country_projection
         }
         _this.current.map_instance.validateNow();
 
@@ -390,6 +474,7 @@ AmWeather.prototype.selectCountryByCountyCode = function(country_code) {
     // HIGHLIGHT COUNTRY
     jQuery(areas).each(function() {
         this.showAsSelected = this.id === country_code;
+        this.balloonText = this.id === country_code ? "" : undefined;
     });
 }
 
@@ -405,7 +490,12 @@ AmWeather.prototype.mapClickHandler = function(e) {
 
     // GET BY SELECTED STATION
     if (station) {
-        _this.showWeather(station.current);
+        if (station.current.isCountry) {
+            _this.hideWeather();
+            _this.countryMode(station.current.countryCode, true);
+        } else {
+            _this.showWeather(station.current);
+        }
 
         // GET BY SELECTED COUNTRY CENTER POINT
     } else if (country) {
@@ -448,7 +538,7 @@ AmWeather.prototype.getWeatherByPoint = function(longitude, latitude) {
     }
 
     // CHECK IF ZOOM IS ALLOWED
-    if (!_this.current.mapZoomAllowed()) {
+    if (!_this.mapZoomAllowed()) {
         return;
     }
 
@@ -485,7 +575,7 @@ AmWeather.prototype.getWeatherByBoundaries = function() {
     }
 
     // CHECK IF ZOOM IS ALLOWED
-    if (_this.current.mapZoomAllowed()) {
+    if (_this.mapZoomAllowed()) {
         return;
     }
 
@@ -506,8 +596,8 @@ AmWeather.prototype.getWeatherByBoundaries = function() {
         url: "http://api.openweathermap.org/data/2.5/box/city",
         data: query,
         success: function(data) {
-            // SET WEATHER STATIONS
-            _this.setWeatherByStations(data.list);
+            // SET WEATHER STATIONS; TODO UPDATE TO DATA SHAPE
+            _this.setWeatherStations(data.list);
         },
         error: function() {
             _this.log("getWeatherByBoundaries", arguments);
@@ -601,13 +691,20 @@ AmWeather.prototype.updateMapData = function(dataProvider) {
 
     // CALLEE
     function callback() {
-        dataProvider = jQuery.extend({
-            zoomLevel: _this.current.map_instance.zoomLevel(),
-            zoomLatitude: _this.current.map_instance.zoomLatitude(),
-            zoomLatitudeC: _this.current.map_instance.zoomLatitude(),
-            zoomLongitude: _this.current.map_instance.zoomLongitude(),
-            zoomLongitudeC: _this.current.map_instance.zoomLongitude()
-        }, dataProvider);
+        var zoomSettings = _this.config.defaultZoom;
+
+        if (_this.current.isCountryMode) {
+            zoomSettings = {
+                zoomLevel: _this.current.map_instance.zoomLevel(),
+                zoomLatitude: _this.current.map_instance.zoomLatitude(),
+                zoomLatitudeC: _this.current.map_instance.zoomLatitude(),
+                zoomLongitude: _this.current.map_instance.zoomLongitude(),
+                zoomLongitudeC: _this.current.map_instance.zoomLongitude()
+            }
+        }
+
+        // MERGE ZOOMSETTINGS;
+        dataProvider = jQuery.extend(dataProvider, zoomSettings);
 
         jQuery.extend(_this.current.map_instance.dataProvider, dataProvider);
 
@@ -671,7 +768,7 @@ AmWeather.prototype.__createMap = function() {
             },
 
             balloon: {
-                enabled: false
+                enabled: true
             },
 
             weather: {
@@ -696,15 +793,7 @@ AmWeather.prototype.__createMap = function() {
             listeners: [{
                 event: "init",
                 method: function() {
-                    jQuery(_this.selector.app.loader).delay(100).animate({
-                        opacity: 0,
-                    }, {
-                        done: function() {
-                            jQuery(_this.selector.app.views).toggleClass("visible");
-
-                            jQuery(_this.selector.search.input).focus();
-                        }
-                    });
+                    _this.__showOff();
                 }
             }, {
                 event: "zoomCompleted",
@@ -1010,6 +1099,10 @@ AmWeather.prototype.__createSearch = function() {
         },
 
         close: function() {
+            // RESET
+            jQuery(".search .results ul").css({
+                height: "auto"
+            });
             jQuery(_this.selector.app.wrapper).removeClass("show-search-results");
         },
 
@@ -1022,6 +1115,20 @@ AmWeather.prototype.__createSearch = function() {
     // RESEARCH VALUE
     _this.search.input.on("focus", function() {
         if (this.value.length || _this.current.isCountryMode) {
+            _this.filterSearchList(this.value);
+        }
+    });
+
+
+    // RESEARCH VALUE
+    _this.search.input.on("blur", function() {
+        if (_this.current.station) {
+            if (this.value.length) {
+                _this.filterSearchList(this.value);
+            } else {
+                _this.search.autocomplete.close();
+            }
+        } else {
             _this.filterSearchList(this.value);
         }
     });
@@ -1232,6 +1339,16 @@ AmWeather.prototype.mergeSearchData = function() {
     var _this = this;
     var list = [];
     var countryCodes = Object.keys(_this.data.countries);
+
+    // OBTAIN TITLES FROM WORLD LOW; WORKAROUND
+    if (AmCharts.maps.worldLow) {
+        jQuery(AmCharts.maps.worldLow.svg.g.path).each(function(i1, country) {
+            if (!_this.data.countries[country.id]) {
+                _this.data.countries[country.id] = {}
+            }
+            _this.data.countries[country.id].name = country.title;
+        });
+    }
 
     // WALKTHROUGH COUNTRY CODES
     jQuery(countryCodes).each(function(i1, countryCode) {
@@ -1783,6 +1900,7 @@ AmWeather.prototype.setChartData = function(dataProvider, updateChartData, force
 AmWeather.prototype.updateChartData = function() {
     var _this = this;
     var dataProvider = [];
+    var zeroValue = false;
 
     // WALKTHROUGH CHARTDATA
     jQuery(_this.current.chart_data).each(function() {
@@ -1821,8 +1939,20 @@ AmWeather.prototype.updateChartData = function() {
             _this.current.chart_graphs.label.labelText = "[[value]] m/s";
         }
 
+        // GET LOWEST VALUE
+        if (tmp.value < 0 && (zeroValue == false || tmp.value < zeroValue)) {
+            zeroValue = tmp.value;
+        }
+
         dataProvider.push(tmp);
     });
+
+    // RESET BASE LINE
+    if (zeroValue) {
+        jQuery(dataProvider).each(function() {
+            this.value += (zeroValue * -1);
+        });
+    }
 
     // ANIMATE DATA CHANGE
     _this.current.chart.animateData(dataProvider, {
@@ -1837,6 +1967,7 @@ AmWeather.prototype.updateChartData = function() {
 AmWeather.prototype.selectItem = function(station) {
     var _this = this;
 
+    _this.search.selected = true;
     _this.filterSearchList("");
     setTimeout(function() {
         _this.search.autocomplete.close();
@@ -2008,7 +2139,7 @@ AmWeather.prototype.zoomToCountryWithBBOX = function(country_code) {
         newZoomLevel = fh * 0.8 / rh;
     }
 
-    // SET NEW ZOOM LEBEL
+    // SET NEW ZOOM LEVEL
     _this.bbox.zoomLevel = AmCharts.fitToBounds(newZoomLevel, zoomControl.minZoomLevel, zoomControl.maxZoomLevel);
 
     // ZOOM TO BOUNDARIES
@@ -2018,40 +2149,45 @@ AmWeather.prototype.zoomToCountryWithBBOX = function(country_code) {
 /*
  ** UPDATE SEARCH META LABELS
  */
-AmWeather.prototype.updateSearchMeta = function() {
+AmWeather.prototype.updateNavLabels = function() {
     var _this = this;
     var country_data = _this.getDataByCountryCode(_this.current.country_code);
     var country_title = country_data.country.name;
     var country_name = country_data.country.value;
     var guesses = [];
 
-    function updateLabels(pickACityLabel, loadMapLabel, country_name) {
-        var labelLoadMap = jQuery(_this.selector.search.metaLoadMap);
-        var labelPickACity = jQuery(_this.selector.search.metaPickACity);
-
-        if (country_name) {
-            labelLoadMap
-                .data("map", country_name)
-                .attr({
-                    href: "?map=" + country_name
-                })
-                .text(loadMapLabel);
-            jQuery(_this.selector.app.wrapper).removeClass("no-country-map");
-        } else {
-            jQuery(_this.selector.app.wrapper).addClass("no-country-map");
+    function updateLabels(country_label, country_name) {
+        // UPDATE LABEL
+        if (country_label) {
+            jQuery(_this.selector.app.navLoadMapCountry).text(country_label);
         }
 
-        labelPickACity.text(pickACityLabel);
-    }
+        // UPDATE HREF; APP CLASS
+        if (country_name) {
+            jQuery(_this.selector.app.wrapper).removeClass("no-country-map");
 
-    if (_this.env.map != "worldLow") {
-        updateLabels(country_title, "World", "world");
-        return;
+            jQuery(_this.selector.app.navLoadMapCountry)
+                .attr({
+                    href: "?map=" + country_name
+                });
+        } else {
+            jQuery(_this.selector.app.wrapper).addClass("no-country-map");
+
+            jQuery(_this.selector.app.navLoadMapCountry)
+                .attr({
+                    href: null
+                });
+        }
+
+        // UPDATE LABEL DATA CONTEXT
+        jQuery(_this.selector.app.navLoadMapCountry)
+            .data("map", country_name || false);
+
     }
 
     // EXCEPTIONS
     if (_this.current.country_code == "US") {
-        guesses.push("usa");
+        guesses.push("usaMercator");
 
         // TRY TO FIND MAP THROUGH TITLE
     } else {
@@ -2080,7 +2216,7 @@ AmWeather.prototype.updateSearchMeta = function() {
             var mapFile = _this.env.maps[country_name];
 
             if (mapFile) {
-                updateLabels(country_title, country_title, country_name);
+                updateLabels(country_title, country_name);
                 return false;
             }
         });
@@ -2107,7 +2243,7 @@ AmWeather.prototype.countryMode = function(country_code, zoomToCountryByCountryC
 
     // UPDATE ELEMENTS
     jQuery(_this.search.input).attr("placeholder", "Search City...");
-    _this.updateSearchMeta();
+    _this.updateNavLabels();
     jQuery(_this.selector.search.meta).show();
 
     // FLAG ANIMATION
@@ -2117,6 +2253,8 @@ AmWeather.prototype.countryMode = function(country_code, zoomToCountryByCountryC
     if (zoomToCountryByCountryCode) {
         if (zoomToCountryByCountryCode != "autoZoom") {
             _this.zoomToCountryByCountryCode(country_code);
+        } else if (country_code == "US") {
+            _this.current.map_instance.zoomToLongLat(4.4214, -81.6588, 39.6798)
         }
     } else {
         _this.current.map_instance.zoomOut();
@@ -2141,7 +2279,7 @@ AmWeather.prototype.countryMode = function(country_code, zoomToCountryByCountryC
 /*
  ** ACITVATE COUNTRY MODE
  */
-AmWeather.prototype.worldMode = function(stayWhereYouAt) {
+AmWeather.prototype.worldMode = function() {
     var _this = this;
     var list = _this.data.merged;
 
@@ -2161,20 +2299,16 @@ AmWeather.prototype.worldMode = function(stayWhereYouAt) {
     jQuery(_this.search.input).attr("placeholder", "Search City, Country...");
     jQuery(_this.selector.search.meta).hide();
 
-    // UPDATE DATA
-    if (!stayWhereYouAt) {
+    // RESET ZOOM
+    _this.current.map_isAnimating = true;
+    _this.current.map_instance.zoomToLongLat(_this.config.defaultZoom.zoomLevel, _this.config.defaultZoom.zoomLongitude, _this.config.defaultZoom.zoomLatitude);
+    _this.selectCountryByCountyCode(false);
 
-        // RESET ZOOM
-        _this.current.map_isAnimating = true;
-        _this.current.map_instance.zoomToGroup();
-        _this.selectCountryByCountyCode(false);
+    // LOAD DEFAULT SET
+    _this.getWeatherByStations(_this.config.defaultStations);
 
-        _this.updateMapData({
-            images: []
-        });
-
-        _this.hideWeather();
-    }
+    // HIDE WEATHER
+    _this.hideWeather();
 
     // OFFER TOP 10 CITIES
     _this.updateSearchList(list, true);
@@ -2210,6 +2344,7 @@ AmWeather.prototype.filterSearchList = function(term, withWeatherStations) {
         }, function(list) {
             _this.search.autocomplete._suggest(list);
 
+            // SHOW WEATHER STATIONS
             if (withWeatherStations) {
                 _this.search.autocomplete.__response(list);
             }
@@ -2219,6 +2354,16 @@ AmWeather.prototype.filterSearchList = function(term, withWeatherStations) {
 
             // SHOW RESULTS
             jQuery(".search .results ul").show();
+
+            // SET RESULTS HEIGHT IF NEEDED
+            var offset = jQuery(_this.selector.search.results).offset();
+            var rh = jQuery(_this.selector.search.results).height();
+            var vh = jQuery(window).height() - offset.top;
+            var nh = rh > vh ? vh : "auto";
+
+            jQuery(".search .results ul").css({
+                height: nh
+            });
         });
     }, 1);
 }
@@ -2257,6 +2402,7 @@ AmWeather.prototype.showWeather = function(item) {
 
     jQuery(_this.search.input).blur();
     jQuery(_this.selector.app.wrapper).addClass("show-weather");
+    jQuery(_this.selector.app.wrapper).addClass("show-drawer");
 }
 
 /*

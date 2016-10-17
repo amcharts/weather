@@ -1,6 +1,6 @@
 # amCharts Weather Map
 
-Version: 1.0.2
+Version: 1.0.3
 
 
 ## Description
@@ -71,6 +71,15 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 
 ## Changelog
+
+### 1.0.3
+* Fixed: Belarus title issue
+* Fixed: US exception zooming into the states less alaska
+* Fixed: Initial zoom to gain more space
+* Fixed: Initial stations `defaultStations` in config, top 15 by population has been hardcoded
+* Fixed: Top NAV menu to toggle the menu
+* Fixed: Search / Results behaviour
+* Fixed: below zero temperature display
 
 ### 1.0.2
 * Fixed: SVG icon display issue on Firefox
