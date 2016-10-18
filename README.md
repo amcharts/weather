@@ -56,6 +56,14 @@ It minifies and combines several files together to lower the payload of the web-
 ```
 * Copy [`/build`](./blob/master/build/), place it anywhere you want and voilá.
 
+## Support
+
+Important thing to know is this: amCharts Weather Map is not a product. It's 
+rather a showcase of what can be done with amCharts products. While we'll do 
+our best to answer your queries in GitHub issue tracker, we won't be able to
+extend full-fledged [amCharts support service](https://www.amcharts.com/support/about-support/)
+to this tool.
+
 
 ## License
 
@@ -68,7 +76,10 @@ Please see attached file "license.txt" for the complete license or online here:
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-**Important!** amCharts Weather Maps relies on other amCharts products such as [JavaScript Maps](https://www.amcharts.com/javascript-maps/) and [JavaScript Charts](https://www.amcharts.com/javascript-charts/), that are licensed differently.
+**Important!** amCharts Weather Maps relies on other amCharts products such as 
+[JavaScript Maps](https://www.amcharts.com/javascript-maps/) and 
+[JavaScript Charts](https://www.amcharts.com/javascript-charts/), that are 
+licensed differently.
 
 ## Contact us
 
