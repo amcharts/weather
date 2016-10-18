@@ -1,6 +1,9 @@
 {
   "name": "amcharts-weather",
-  "version": "1.0.1",
+  "version": "1.0.4",
+  "description": "Free weather map and chart visualization app, built with amCharts libraries. Use it online or fork it on GitHub and create your own version.",
+  "repository": "https://github.com/amcharts/weather.git",
+  "homepage": "http://weather.amcharts.com/",
   "author": "Benjamin Maertz <maertz@benjaminmaertz.de>",
   "bugs": {
     "url" : "https://github.com/amcharts/weather/issues"

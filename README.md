@@ -1,6 +1,6 @@
 # amCharts Weather Map
 
-Version: 1.0.3
+Version: 1.0.4
 
 
 ## Description
@@ -14,16 +14,24 @@ Before you start, ensure you have your own [OpenWeather API-Key](http://openweat
 
 ##### Quick and Dirty
 You just want to give it a quick try and check it's capabilities, follow these few points.
-* Copy [`/build`](./blob/master/build/) anywhere you want or leave it there.
-* Place your OpenWeather API-Key in [`/build/assets/js/OPENWEATHER_APIKEY.js`](./blob/master/build/assets/js/OPENWEATHER_APIKEY.js).
-* Open [`/build/index.html`](./blob/master/build/index.html) and voilá.
+* Uncompressed (development version)
+	* Copy [`/`](./blob/master/) anywhere you want or leave it there.
+	* Delete [`/build`](./blob/master/build/) in your _anywhere_ (actually not necessary)
+	* Place your OpenWeather API-Key in [`/assets/js/OPENWEATHER_APIKEY.js`](./blob/master/build/assets/js/OPENWEATHER_APIKEY.js).
+	* Open [`/index.html`](./blob/master/index.html) and voilá.
+
+* Compressed (production version)
+	* Copy [`/build`](./blob/master/build/) anywhere you want or leave it there.
+	* Place your OpenWeather API-Key in [`/build/assets/js/OPENWEATHER_APIKEY.js`](./blob/master/build/assets/js/OPENWEATHER_APIKEY.js).
+	* Open [`/build/index.html`](./blob/master/build/index.html) and voilá.
 
 ##### Advanced
 You did it quick and dirty and now you feel to mess around with it? Here we go, this is your new route.
-* Enter your new playground in [`/assets`](./blob/master/assets) and get crazy.
+* Enter your new playground in [`/assets`](./blob/master/assets) and get crazy (not the one in [`/build`](./blob/master/build/)).
 * Place your OpenWeather API-Key in [`/assets/js/OPENWEATHER_APIKEY.js`](./blob/master/assets/js/OPENWEATHER_APIKEY.js).
 * If needed adapt the [`index.html`](./blob/master/index.html) as well.
 * Open the [`index.html`](./blob/master/index.html) in your browser to enjoy all your changes.
+* Everything good? Alright you probably wonder [`how to build`](#how-to-build).
 
 
 ## How to build
@@ -31,22 +39,22 @@ You did it quick and dirty and now you feel to mess around with it? Here we go, 
 We use [`gruntjs`](http://gruntjs.com/) to do all the magic behind the scenes.
 It minifies and combines several files together to lower the payload of the web-app.
 
-1. Install [NPM and node.js](https://docs.npmjs.com/getting-started/installing-node)
-2. Install [Bower](https://bower.io/#install-bower)
-3. Goto `/` of this web-app in  your terminal
-4. Run following command to install all node dependencies
+* Install [NPM and node.js](https://docs.npmjs.com/getting-started/installing-node)
+* Install [Bower](https://bower.io/#install-bower)
+* Goto `/` of this web-app in  your terminal
+* Run following command to install all node dependencies
 ```
 > npm install -D
 ```
-5. Run following command to install all bower dependencies
+* Run following command to install all bower dependencies
 ```
 > bower install
 ```
-6. Run grunt to create your own build
+* Run grunt to create your own build
 ```
 > grunt
 ```
-7. Copy [`/build`](./blob/master/build/), place it anywhere you want and voilá.
+* Copy [`/build`](./blob/master/build/), place it anywhere you want and voilá.
 
 
 ## License
@@ -71,6 +79,10 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 
 ## Changelog
+
+### 1.0.4
+* Added: Necessary bower components for uncompressed version
+* Fixed: bower.json, package.json
 
 ### 1.0.3
 * Fixed: Belarus title issue

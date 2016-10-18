@@ -1,10 +1,19 @@
-.DS_Store
-assets/js/OPENWEATHER_APIKEY.js
-assets/json/names/*
+# Ignore these
+**/.DS_Store
+**OPENWEATHER_APIKEY.js
 node_modules/*
-bower_components/*
-!bower_components/jQuery/dist/*
+assets/json/names/*
+
+# Whitelist those
+!.gitignore
+!README.md
+!LICENSE
+
+# Except that
+bower_components/jquery/*
+bower_components/jquery/dist/*
+!bower_components/jquery/dist/jquery.js
+bower_components/jquery-ui/*
 !bower_components/jquery-ui/jquery-ui.js
-!bower_components/normalize-css/normalize-css.css
-assets/js/OPENWEATHER_APIKEY.js
-build/assets/js/OPENWEATHER_APIKEY.js
+bower_components/normalize-css/*
+!bower_components/normalize-css/normalize.css

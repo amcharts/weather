@@ -2,7 +2,7 @@
 Name: amCharts Weather Map
 Description: Weather forecast webapp
 Author: Benjamin Maertz, amCharts
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://www.amcharts.com/
 
 Copyright 2016 amCharts
