@@ -735,6 +735,12 @@ AmWeather.prototype.__createMap = function() {
             type: "map",
 
             fontFamily: "Roboto",
+            fontSize: 17,
+
+            balloon: {
+                horizontalPadding: 15,
+                verticalPadding: 12
+            },
 
             dataProvider: {},
 
