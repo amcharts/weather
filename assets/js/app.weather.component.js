@@ -737,11 +737,6 @@ AmWeather.prototype.__createMap = function() {
             fontFamily: "Roboto",
             fontSize: 17,
 
-            balloon: {
-                horizontalPadding: 15,
-                verticalPadding: 12
-            },
-
             dataProvider: {},
 
             mouseWheelZoomEnabled: true,
@@ -774,7 +769,9 @@ AmWeather.prototype.__createMap = function() {
             },
 
             balloon: {
-                enabled: true
+                enabled: true,
+                horizontalPadding: 15,
+                verticalPadding: 12
             },
 
             weather: {
