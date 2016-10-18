@@ -108,8 +108,8 @@ var AmWeather = function() {
         pathToResources: "./assets/csv/resources.csv",
         easing: jQuery.easing.easeInOutCubic,
         labels: {
-            showThis: "Show this",
-            hideThis: "Hide this"
+            showThis: "Show",
+            hideThis: "Hide"
         },
 
         defaultZoom: {
