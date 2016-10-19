@@ -1,6 +1,6 @@
 # amCharts Weather Map
 
-Version: 1.0.4
+Version: 1.0.5
 
 
 ## Description
@@ -108,6 +108,10 @@ licensed differently.
 
 
 ## Changelog
+
+### 1.0.5
+* Added: Implemented ability to set different end-points
+* Fixed: Was using incorrect `appid` parameter for OpenWeather API call
 
 ### 1.0.4
 * Added: Necessary bower components for uncompressed version
