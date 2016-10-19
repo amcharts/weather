@@ -25,6 +25,24 @@ You just want to give it a quick try and check it's capabilities, follow these f
 	* Place your OpenWeather API-Key in [`/build/assets/js/OPENWEATHER_APIKEY.js`](./blob/master/build/assets/js/OPENWEATHER_APIKEY.js).
 	* Open [`/build/index.html`](./blob/master/build/index.html) and voilá.
 
+##### Using under SSL
+If you are going to run this tool under SSL-encoded URL, you'll need to update
+the OpenWeather API endpoint in your `OPENWEATHER_APIKEY.js`. The default one
+is as follows:
+
+```
+OPENWEATHER_ENDPOINT = "http://api.openweathermap.org/data/2.5/";
+```
+
+To use the SSL-enabled endpoint, update it to:
+
+```
+OPENWEATHER_ENDPOINT = "https://pro.openweathermap.org/data/2.5/";
+```
+
+Please note, that SSL connection is not available with their free and Starup 
+subscription plans. You'll need at least Developer subscription.
+
 ##### Advanced
 You did it quick and dirty and now you feel to mess around with it? Here we go, this is your new route.
 * Enter your new playground in [`/assets`](./blob/master/assets) and get crazy (not the one in [`/build`](./blob/master/build/)).

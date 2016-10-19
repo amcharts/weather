@@ -2,7 +2,7 @@
 Name: amCharts Weather Map
 Description: Weather forecast webapp
 Author: Benjamin Maertz, amCharts
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://www.amcharts.com/
 
 Copyright 2016 amCharts
@@ -26,7 +26,7 @@ var AmWeather = function() {
     var _this = this;
 
     // VERSION :)
-    _this.version = "1.0.3";
+    _this.version = "1.0.5";
     _this.bbox = {};
 
     // SELECTOR
@@ -102,7 +102,8 @@ var AmWeather = function() {
         debug: false,
         units: "metric",
         language: "en",
-        apikey: OPENWEATHER_APIKEY,
+        appid: OPENWEATHER_APIKEY,
+        endpoint: OPENWEATHER_ENDPOINT,
         pathToImages: "./assets/img/weather/",
         pathToImagesAnimated: "./assets/img/weather-animated/",
         pathToResources: "./assets/csv/resources.csv",
@@ -530,7 +531,7 @@ AmWeather.prototype.getWeatherByPoint = function(longitude, latitude) {
         cnt: 200,
         cluster: "no",
         format: "json",
-        apikey: _this.config.apikey,
+        appid: _this.config.apikey,
         lang: _this.config.language,
         units: _this.config.units,
         lon: longitude,
@@ -544,7 +545,7 @@ AmWeather.prototype.getWeatherByPoint = function(longitude, latitude) {
 
     // REQUEST DATA
     jQuery.ajax({
-        url: "http://api.openweathermap.org/data/2.5/find",
+        url: _this.config.endpoint + "find",
         data: query,
         success: function(data) {
             // SET WEATHER STATIONS
@@ -568,7 +569,7 @@ AmWeather.prototype.getWeatherByBoundaries = function() {
         cnt: 200,
         cluster: "no",
         format: "json",
-        apikey: _this.config.apikey,
+        appid: _this.config.apikey,
         lang: _this.config.language,
         units: _this.config.units,
         coords: ""
@@ -593,7 +594,7 @@ AmWeather.prototype.getWeatherByBoundaries = function() {
 
     // REQUEST DATA
     jQuery.ajax({
-        url: "http://api.openweathermap.org/data/2.5/box/city",
+        url: _this.config.endpoint + "box/city",
         data: query,
         success: function(data) {
             // SET WEATHER STATIONS; TODO UPDATE TO DATA SHAPE
@@ -1570,7 +1571,7 @@ AmWeather.prototype.getWeatherByStations = function(stations) {
     var unknownStationIds = _this.getUnknownStationIds(stations);
     var query = {
         format: "json",
-        apikey: _this.config.apikey,
+        appid: _this.config.apikey,
         lang: _this.config.language,
         units: _this.config.units,
         id: unknownStationIds.join(",")
@@ -1589,7 +1590,7 @@ AmWeather.prototype.getWeatherByStations = function(stations) {
 
     // REQUEST FORECAST DATA
     jQuery.ajax({
-        url: "http://api.openweathermap.org/data/2.5/group",
+        url: _this.config.endpoint + "group",
         dataType: "json",
         data: query,
         success: function(res) {
@@ -1661,7 +1662,7 @@ AmWeather.prototype.getWeatherById = function(station_id) {
     var _this = this;
     var query = {
         format: "json",
-        apikey: _this.config.apikey,
+        appid: _this.config.apikey,
         lang: _this.config.language,
         units: _this.config.units,
         id: station_id
@@ -1692,7 +1693,7 @@ AmWeather.prototype.getWeatherById = function(station_id) {
 
     // REQUEST FORECAST DATA
     jQuery.ajax({
-        url: "http://api.openweathermap.org/data/2.5/forecast",
+        url: _this.config.endpoint + "forecast",
         dataType: "json",
         data: query,
         success: function(res) {
