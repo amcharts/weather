@@ -102,7 +102,7 @@ var AmWeather = function() {
         debug: false,
         units: "metric",
         language: "en",
-        appid: OPENWEATHER_APIKEY,
+        apikey: OPENWEATHER_APIKEY,
         endpoint: OPENWEATHER_ENDPOINT,
         pathToImages: "./assets/img/weather/",
         pathToImagesAnimated: "./assets/img/weather-animated/",
