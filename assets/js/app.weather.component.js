@@ -1223,7 +1223,7 @@ AmWeather.prototype.__extendJquery = function() {
             }
 
             // TEMPERATUR SIGN
-            if (temp) {
+            if (!isNaN(temp)) {
                 temp = _this.getTemperatur(data.units, temp);
                 temp += "\u00B0";
             } else {
