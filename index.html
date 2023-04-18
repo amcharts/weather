@@ -6,10 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 	<link rel="shortcut icon" href="./assets/img/icons/favicon.ico" />
-	<link rel="manifest" href="./assets/json/manifest.json">
+	<link rel="manifest" href="./manifest.json">
 
 	<meta name="mobile-web-app-capable" content="yes">
-
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="./assets/img/icons/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/img/icons/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="./assets/img/icons/apple-touch-icon-72x72.png" />
@@ -23,7 +22,7 @@
 	<link rel="icon" type="image/png" href="./assets/img/icons/favicon-32x32.png" sizes="32x32" />
 	<link rel="icon" type="image/png" href="./assets/img/icons/favicon-16x16.png" sizes="16x16" />
 	<link rel="icon" type="image/png" href="./assets/img/icons/favicon-128.png" sizes="128x128" />
-	<meta name="application-name" content="&nbsp;"/>
+	<meta name="application-name" content="&nbsp;" />
 	<meta name="msapplication-TileColor" content="#FFFFFF" />
 	<meta name="msapplication-TileImage" content="./assets/img/icons/mstile-144x144.png" />
 	<meta name="msapplication-square70x70logo" content="./assets/img/icons/mstile-70x70.png" />
@@ -42,7 +41,10 @@
 	<meta property="og:description" content="Free weather map and chart visualization app, built with amCharts libraries. Use it online or fork it on GitHub and create your own version." />
 	<meta property="og:image" content="https://weather.amcharts.com/assets/img/amcharts-weather-forecast.jpg" />
 
-	<link rel="stylesheet" type="text/css" href="./assets/css/app.min.css?hash=2016120901">
+	<link rel="stylesheet" type="text/css" href="./bower_components/normalize-css/normalize.css">
+
+	<link rel="stylesheet" type="text/css" href="./assets/css/app.css">
+	<link rel="stylesheet" type="text/css" href="./assets/css/app.social.css">
 
 	<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,500' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:100,300' rel='stylesheet' type='text/css'>
@@ -88,7 +90,7 @@
 						&nbsp;&ndash;&nbsp;<span>Back to</span> <a class="world forced loadmap bold" href="?map=world" data-map="world">World</a> map.
 					</li>
 					<li class="toggle">
-						<a href="#">Hide</a>
+						<a href="#" class="toggle">Hide</a>
 					</li>
 				</ul>
 				<div class="search">
@@ -154,19 +156,13 @@
 	<script type="text/javascript" src="//www.amcharts.com/lib/3/plugins/animate/animate.js"></script>
 	<script type="text/javascript" src="//www.amcharts.com/lib/3/ammap_amcharts_extension.js"></script>
 
-	<script type="text/javascript" src="./assets/js/OPENWEATHER_APIKEY.js?hash=20230418"></script>
-	<script type="text/javascript" src="./assets/js/app.min.js?hash=2016120901"></script>
+	<script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="./bower_components/jquery-ui/jquery-ui.js"></script>
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HHXW5699S5"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'G-HHXW5699S5');
-	</script>
-
+	<script type="text/javascript" src="./assets/js/OPENWEATHER_APIKEY.js"></script>
+	<script type="text/javascript" src="./assets/js/app.weather.component.js"></script>
+	<script type="text/javascript" src="./assets/js/app.weather.startup.js"></script>
+	<script type="text/javascript" src="./assets/js/app.weather.collisionHandler.js"></script>
 </body>
 
 </html>
