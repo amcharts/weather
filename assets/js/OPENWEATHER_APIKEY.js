@@ -3,7 +3,7 @@
  * http://openweathermap.org/price
  * Please choose the plan which fits to your requirements!
 */
-OPENWEATHER_APIKEY = "";
+OPENWEATHER_APIKEY = "90f12bbb0dc3ae0580e1f39d18035371";
 
 /**
  * An end-point URL to use for accessing OpenWeatherMap API
