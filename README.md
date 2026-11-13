@@ -1,5 +1,9 @@
 # amCharts Weather Map
 
+> **No longer maintained.** This project is kept for historic purposes only. It was a 2016 showcase built with amCharts 3, and it is no longer online (weather.amcharts.com shows a notice instead) or maintained: issues and pull requests won't be answered, and the code may not work with today's OpenWeatherMap API. More about it: https://www.amcharts.com/legacy/v3/weather-map/
+>
+> For weather or any other data on a map today, see [amCharts 5 JavaScript Maps](https://www.amcharts.com/javascript-maps/).
+
 Version: 1.0.5
 
 
